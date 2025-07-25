@@ -1,0 +1,194 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #95260d;
+  color: aquamarine;
+}
+header {
+  background: url(/assets/hero-bg.png) center/cover no-repeat;
+  color: #ffffffcc;
+  padding-bottom: 40px;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+}
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+.hero {
+  text-align: center;
+  margin-top: 60px;
+}
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.hero button {
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.hero button:hover {
+  background: #95260d;
+}
+main {
+  padding: 40px;
+}
+section {
+  margin-bottom: 60px;
+}
+.gallery {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+.item {
+  background: rgba(0,0,0,0.3);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 20px;
+  text-align: center;
+  width: 220px;
+}
+.item img {
+  width: 100%;
+  border-radius: 8px;
+}
+.designers {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+.designer {
+  text-align: center;
+}
+.designer img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+form input, form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+form button {
+  background: #e91e63;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+form button:hover {
+  background: #222;
+}
+#formMessage {
+  text-align: center;
+  margin-top: 15px;
+  color: #e91e63;
+}
+footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+}
+
+
+/* Responsive styles for mobile devices */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    padding: 15px 10px;
+  }
+  nav ul {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    padding: 0;
+  }
+  .logo {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+  }
+  .hero {
+    margin-top: 30px;
+    padding: 0 10px;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  .gallery {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  .item {
+    width: 90vw;
+    max-width: 320px;
+    padding: 10px;
+  }
+  .designers {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  .designer img {
+    width: 90px;
+    height: 90px;
+  }
+  main {
+    padding: 15px;
+  }
+  section {
+    margin-bottom: 30px;
+  }
+  form {
+    max-width: 95vw;
+    padding: 0 5px;
+  }
+  footer {
+    padding: 15px 0;
+    font-size: 0.9rem;
+  }
+}

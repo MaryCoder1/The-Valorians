@@ -1,0 +1,83 @@
+{
+  "collections": [
+    {
+      "season": "Spring",
+      "label": "🌸 Spring Collection",
+      "items": [
+        {
+          "title": "Floral Bliss",
+          "image": "collection1.jpg",
+          "description": "Light fabrics and blooming motifs celebrating renewal and grace."
+        },
+        {
+          "title": "Pastel Petals",
+          "image": "collection1b.jpg",
+          "description": "Soft pastel hues with delicate embroidery accents."
+        },
+        {
+          "title": "Garden Gala",
+          "image": "collection1c.jpg",
+          "description": "Maxi dresses with botanical prints perfect for a garden party."
+        }
+      ]
+    },
+    {
+      "season": "Summer",
+      "label": "☀️ Summer Collection",
+      "items": [
+        {
+          "title": "Sunset Chic",
+          "image": "collection2.jpg",
+          "description": "Bold colors and effortless cuts to keep the heat stylish."
+        },
+        {
+          "title": "Coastal Breeze",
+          "image": "collection2b.jpg",
+          "description": "Lightweight linens in ocean-inspired tones."
+        },
+        {
+          "title": "Tropical Twist",
+          "image": "collection2c.jpg",
+          "description": "Vibrant prints that bring island vibes to any city street."
+        }
+      ]
+    },
+    {
+      "season": "Autumn",
+      "label": "🍂 Autumn Collection",
+      "items": [
+        {
+          "title": "Golden Aura",
+          "image": "collection3.jpg",
+          "description": "Earthy tones, layered comfort, and elegance in motion."
+        },
+        {
+          "title": "Harvest Hue",
+          "image": "collection3b.jpg",
+          "description": "Rich rusts and deep olives in cozy knits."
+        },
+        {
+          "title": "Midnight Velvet",
+          "image": "collection3c.jpg",
+          "description": "Velvet jackets and tailored trousers for crisp evenings."
+        }
+      ]
+    },
+    {
+    "season": "Winter",
+    "label": "❄️ Winter Collection",
+    "items": [
+        {
+        "title": "Arctic Allure",
+        "image": "collection4.jpg",
+        "description": "Cozy coats and layered knits for frosty days."
+        },
+        {
+        "title": "Frosted Elegance",
+        "image": "collection4b.jpg",
+        "description": "Velvet gowns and statement scarves in jewel tones."
+        }
+      ]
+    }
+  ]
+}
