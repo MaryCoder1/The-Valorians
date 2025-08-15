@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board of Trustees - Luxe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #d4af37;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        /* Board Section */
+        .board {
+            padding: 12rem 2rem 8rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .board h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 200;
+            margin-bottom: 4rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #d4af37;
+        }
+
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .board-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .board-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .board-card:hover::before {
+            left: 100%;
+        }
+
+        .board-card:hover {
+            transform: translateY(-10px);
+            border-color: #d4af37;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .board-icon {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .board-icon img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #d4af37;
+            transition: transform 0.3s ease;
+        }
+
+        .board-card:hover .board-icon img {
+            transform: scale(1.1);
+        }
+
+        .board-card h3 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #d4af37;
+        }
+
+        .board-card .title {
+            font-size: 1rem;
+            color: #bbb;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .board-card p {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .board {
+                padding: 10rem 1rem 6rem;
+            }
+
+            .board h2 {
+                font-size: 2.5rem;
+                margin-bottom: 3rem;
+            }
+
+            .board-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .board-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">Luxe</div>
+            <nav>
+                <ul>
+                    
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/features.html">Collections</a></li>
+                    <li><a href="/board.html">Board</a></li>
+                    <li><a href="/inquiries.html">inquiries</a></li>
+                    <li><a href="event.html">Event</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="board" class="board">
+        <div class="container">
+            <h2>Board of Trustees</h2>
+            <div class="board-grid">
+                <div class="board-card">
+                    <div class="board-icon">
+                        <img src="board/board.jpg" alt="Chairman Portrait">
+                    </div>
+                    <h3>Kamaldeen Mohammed 
+                    </h3>
+                    <div class="title">Chairman of the Board</div>
+                    <p>With over 25 years in luxury brand management, Marcus brings visionary leadership and strategic expertise to guide Luxe's continued excellence in haute couture.</p>
+                </div>
+
+                <div class="board-card">
+                    <div class="board-icon">
+                        <img src="board/board(1).jpg" alt="Creative Director Portrait">
+                    </div>
+                    <h3>Isaiah Igbunu Igoh</h3>
+                    <div class="title">Creative Director</div>
+                    <p>Award-winning designer with a passion for innovation and craftsmanship. Isabella's artistic vision shapes every collection, blending timeless elegance with contemporary flair.</p>
+                </div>
+
+                <div class="board-card">
+                    <div class="board-icon">
+                        <img src="board/board(2).jpg" alt="CEO Portrait">
+                    </div>
+                    <h3>Afolayan Mary Adebimpe</h3>
+                    <div class="title">Chief Executive Officer</div>
+                    <p>Former executive at prestigious fashion houses, Afolayan combines business acumen with deep appreciation for artisanal craftsmanship and sustainable luxury practices.</p>
+                </div>
+
+                <div class="board-card">
+                    <div class="board-icon">
+                        <img src="board/Board(3).jpg" alt="COO Portrait">
+                    </div>
+                    <h3> Lweendo Mwando</h3>
+                    <div class="title">Chief Operating Officer</div>
+                    <p>Operations strategist dedicated to excellence in every detail. Victoria ensures that Luxe's commitment to quality and client satisfaction remains uncompromised across all touchpoints.</p>
+                </div>
+
+               
+
+               
+            </div>
+        </div>
+    </section>
+</body>
+</html>

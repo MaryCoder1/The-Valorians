@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .about-text h2,
+            .features h2,
+            .contact h2 {
+                font-size: 2rem;
+            }
+             /* About Section */
+        .about {
+            padding: 8rem 2rem;
+            background: #f8f8f8;
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(180deg, rgba(248,248,248,0) 0%, rgba(248,248,248,1) 100%);
+            transform: translateY(-100px);
+        }
+
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 3rem;
+            font-weight: 200;
+            color: #333;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.1);
+        }
+
+       
+
+    </style>
+
+    
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">Luxe</div>
+            <nav>
+                <ul>
+                    
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/features.html">Collections</a></li>
+                    <li><a href="/board.html">Board</a></li>
+                    <li><a href="/inquiries.html">inquiries</a></li>
+                    <li><a href="event.html">Event</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="marquee">
+        <div class="event-card">
+            <div class="event-image"><img src="/images/Luxe_suit.jpg"></div>
+            <h3>Luxury Accessories</h3>
+            <p>Premium leather goods and accessories that complement your lifestyle with sophistication and functional elegance.</p>
+        </div>
+        <div class="event-card">
+            <div class="event-image"><img src="/images/Luxe_suit.jpg"></div>
+            <h3>Luxury Accessories</h3>
+            <p>Premium leather goods and accessories that complement your lifestyle with sophistication and functional elegance.</p>
+        </div>
+        <div class="event-card">
+            <div class="event-image"><img src="/images/Luxe_suit.jpg"></div>
+            <h3>Luxury Accessories</h3>
+            <p>Premium leather goods and accessories that complement your lifestyle with sophistication and functional elegance.</p>
+        </div>
+        <div class="event-card">
+            <div class="event-image"><img src="/images/Luxe_suit.jpg"></div>
+            <h3>Luxury Accessories</h3>
+            <p>Premium leather goods and accessories that complement your lifestyle with sophistication and functional elegance.</p>
+        </div>
+        <div class="event-card">
+            <div class="event-image"><img src="/images/Luxe_suit.jpg"></div>
+            <h3>Luxury Accessories</h3>
+            <p>Premium leather goods and accessories that complement your lifestyle with sophistication and functional elegance.</p>
+        </div>
+    </section>
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Luxe</h2>
+                    <p>
+                        Since our inception, Luxe has been synonymous with exceptional quality and 
+                        refined taste. We believe that luxury is not just about exclusivity, but 
+                        about the perfect harmony of design, craftsmanship, and innovation.
+                    </p>
+                    <p>
+                        Our team of visionary designers and master craftspeople work tirelessly 
+                        to create pieces that transcend trends and become timeless classics. 
+                        Each item in our collection tells a story of passion, precision, and 
+                        uncompromising attention to detail.
+                    </p>
+                    <p>
+                        From the finest fabrics sourced globally to the meticulous handcrafting 
+                        process, every aspect of our creation reflects our commitment to excellence 
+                        and our dedication to providing our discerning clientele with nothing but the best.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f0f0f0'/%3E%3Cstop offset='100%25' style='stop-color:%23e0e0e0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23bg)'/%3E%3Ctext x='200' y='150' text-anchor='middle' font-family='serif' font-size='24' fill='%23666'%3ELuxe Atelier%3C/text%3E%3C/svg%3E" alt="Luxe Fashion Atelier">
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

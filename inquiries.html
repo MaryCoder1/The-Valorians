@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inquiries - Luxe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #d4af37;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        /* Main Content */
+        .inquiries-section {
+            padding: 12rem 2rem 4rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h1 {
+            font-size: 3.5rem;
+            font-weight: 200;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #d4af37;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #ccc;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Form Styles */
+        .inquiry-form {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 4rem 3rem;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .inquiry-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #d4af37, #f4d47a, #d4af37);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #d4af37;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #d4af37;
+            background: rgba(255,255,255,0.12);
+            box-shadow: 0 0 20px rgba(212,175,55,0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        option {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            transform: scale(1.2);
+            accent-color: #d4af37;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            color: #ccc;
+            font-size: 0.95rem;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #f4d47a 100%);
+            color: #000;
+            border: none;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212,175,55,0.3);
+        }
+
+        /* Contact Information */
+        .contact-info {
+            margin-top: 4rem;
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .contact-info h3 {
+            color: #d4af37;
+            font-size: 1.5rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item h4 {
+            color: #d4af37;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .inquiries-section {
+                padding: 10rem 1rem 3rem;
+            }
+
+            .section-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .inquiry-form {
+                padding: 2.5rem 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contact-details {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">Luxe</div>
+            <nav>
+                <ul>
+                    
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/features.html">Collections</a></li>
+                    <li><a href="/board.html">Board</a></li>
+                    <li><a href="/inquiries.html">inquiries</a></li>
+                    <li><a href="event.html">Event</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="inquiries-section">
+        <div class="container">
+            <div class="section-header">
+                <h1>Client Inquiries</h1>
+                <p>We invite you to begin your journey with Luxe. Our atelier specialists are ready to discuss your vision and create something truly extraordinary for you.</p>
+            </div>
+
+            <form class="inquiry-form" action="#" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="inquiryType">Inquiry Type *</label>
+                        <select id="inquiryType" name="inquiryType" required>
+                            <option value="">Select inquiry type...</option>
+                            <option value="haute-couture">Haute Couture Commission</option>
+                            <option value="ready-to-wear">Ready-to-Wear Collection</option>
+                            <option value="bridal">Bridal & Special Occasions</option>
+                            <option value="accessories">Luxury Accessories</option>
+                            <option value="consultation">Style Consultation</option>
+                            <option value="alterations">Alterations & Tailoring</option>
+                            <option value="collaboration">Brand Collaboration</option>
+                            <option value="press">Press & Media</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Estimated Budget Range</label>
+                        <select id="budget" name="budget">
+                            <option value="">Select budget range...</option>
+                            <option value="50k-100k">&#8358;50,000 - &#8358;100,000</option>
+                            <option value="100k-125k">&#8358;100,000 - &#8358;125,000</option>
+                            <option value="125k-150k">&#8358;25,000 - &#8358;50,000</option>
+                            <option value="150k-200k">&#8358;150,000 - &#8358;200,000</option>
+                            <option value="200k+">&#8358;100,000+</option>
+                            <option value="discuss">Prefer to discuss</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="eventDate">Event/Delivery Date</label>
+                    <input type="date" id="eventDate" name="eventDate">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="message">Tell us about your vision *</label>
+                    <textarea id="message" name="message" placeholder="Please describe your project, style preferences, inspiration, or any specific requirements you have in mind..." required></textarea>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <label for="newsletter">I would like to receive updates about new collections and exclusive events</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="privacy" name="privacy" required>
+                    <label for="privacy">I agree to the privacy policy and terms of service *</label>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Inquiry</button>
+            </form>
+
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <p>For immediate assistance or to schedule a private consultation, please contact us directly.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <h4>Atelier</h4>
+                        <p>09059367154<br>Mon-Sat: 10AM-7PM</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Email</h4>
+                        <p>inquiries@luxe.com<br>Response within 24 hours</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Private Appointments</h4>
+                        <p>appointments@luxe.com<br>By appointment only</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Form enhancement and validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.inquiry-form');
+            const submitBtn = document.querySelector('.submit-btn');
+
+            // Add floating label effect
+            const inputs = document.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('focused');
+                });
+
+                input.addEventListener('blur', function() {
+                    if (this.value === '') {
+                        this.parentElement.classList.remove('focused');
+                    }
+                });
+            });
+
+            // Form submission handling
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                submitBtn.innerHTML = 'Submitting...';
+                submitBtn.disabled = true;
+                
+                // Simulate form submission (replace with actual submission logic)
+                setTimeout(() => {
+                    submitBtn.innerHTML = 'Inquiry Submitted ✓';
+                    submitBtn.style.background = 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)';
+                    
+                    // Reset after 3 seconds
+                    setTimeout(() => {
+                        submitBtn.innerHTML = 'Submit Inquiry';
+                        submitBtn.style.background = 'linear-gradient(135deg, #d4af37 0%, #f4d47a 100%)';
+                        submitBtn.disabled = false;
+                        form.reset();
+                    }, 3000);
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

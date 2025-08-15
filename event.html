@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Luxe Fashion House</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Events Page Specific Styles */
+        .events {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%);
+            min-height: 100vh;
+        }
+
+        .events-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .events-header h1 {
+            font-size: 4rem;
+            font-weight: 200;
+            color: #333;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .events-header p {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .event-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .event-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .event-item-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .event-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .event-item:hover .event-item-image img {
+            transform: scale(1.1);
+        }
+
+        .event-date-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .event-item-content {
+            padding: 2rem;
+        }
+
+        .event-item h3 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #333;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .event-item p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 1.5rem;
+        }
+
+        .event-location {
+            font-size: 0.9rem;
+            color: #999;
+            display: flex;
+            align-items: center;
+        }
+
+        .event-location::before {
+            content: "📍";
+            margin-right: 5px;
+        }
+
+        .event-btn {
+            background: linear-gradient(45deg, #333, #555);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .event-btn:hover {
+            background: linear-gradient(45deg, #555, #777);
+            transform: translateY(-2px);
+        }
+
+        .upcoming-events {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 4rem;
+        }
+
+        .upcoming-events h2 {
+            font-size: 2.5rem;
+            font-weight: 200;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #333, #999);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 10px;
+            width: 16px;
+            height: 16px;
+            background: #333;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #333;
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: #999;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .timeline-desc {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .events-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .events-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .timeline {
+                padding-left: 1rem;
+            }
+            
+            .timeline-item {
+                padding-left: 1.5rem;
+            }
+        }
+
+        /* Animation for loading */
+        .event-item {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .event-item:nth-child(1) { animation-delay: 0.1s; }
+        .event-item:nth-child(2) { animation-delay: 0.2s; }
+        .event-item:nth-child(3) { animation-delay: 0.3s; }
+        .event-item:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Marquee styling to match existing design */
+        #marquee {
+            background: #000;
+            padding: 1rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        #marquee .event-card {
+            display: inline-block;
+            margin: 0 2rem;
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            min-width: 300px;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">Luxe</div>
+            <nav>
+                <ul>
+                    
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/features.html">Collections</a></li>
+                    <li><a href="/board.html">Board</a></li>
+                    <li><a href="/inquiries.html">Inquiries</a></li>
+                    <li><a href="event.html">Event</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Marquee Section -->
+    <section id="marquee">
+        <div class="event-card">
+            <div class="event-image"><img src="/images/Luxe_suit.jpg" alt="Fashion Show"></div>
+            <h3>Spring Fashion Gala - March 2025</h3>
+            <p>Experience our exclusive Spring Collection in an intimate runway setting.</p>
+        </div>
+        <div class="event-card">
+            <div class="event-image"><img src="/images/Luxe_suit.jpg" alt="Private Viewing"></div>
+            <h3>VIP Private Viewing - April 2025</h3>
+            <p>Exclusive preview of our upcoming Autumn Collection for select clientele.</p>
+        </div>
+        <div class="event-card">
+            <div class="event-image"><img src="/images/Luxe_suit.jpg" alt="Trunk Show"></div>
+            <h3>Designer Trunk Show - May 2025</h3>
+            <p>Meet our head designer and explore bespoke tailoring options.</p>
+        </div>
+    </section>
+
+    <!-- Main Events Section -->
+    <section class="events">
+        <div class="container">
+            <div class="events-header">
+                <h1>Luxe Events</h1>
+                <p>Join us for exclusive fashion events, trunk shows, and private viewings. Experience luxury fashion in an intimate and sophisticated setting.</p>
+            </div>
+                
+
+                <div class="event-item">
+                    <div class="event-item-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 250'%3E%3Cdefs%3E%3ClinearGradient id='event2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23333'/%3E%3Cstop offset='100%25' style='stop-color:%23000'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='250' fill='url(%23event2)'/%3E%3Ctext x='200' y='130' text-anchor='middle' font-family='serif' font-size='20' fill='white'%3EVIP Private Viewing%3C/text%3E%3C/svg%3E" alt="VIP Private Viewing">
+                        <div class="event-date-badge">APR 22, 2025</div>
+                    </div>
+                    <div class="event-item-content">
+                        <h3>VIP Private Viewing</h3>
+                        <p>An exclusive preview of our upcoming Autumn Collection reserved for our most valued clients. Enjoy personalized styling consultations and champagne reception.</p>
+                        <div class="event-details">
+                            <span class="event-location">Private Salon, Paris</span>
+                            <button class="event-btn" onclick="bookEvent('VIP Viewing')">Request Invitation</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-item-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 250'%3E%3Cdefs%3E%3ClinearGradient id='event3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23800020'/%3E%3Cstop offset='100%25' style='stop-color:%234d0013'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='250' fill='url(%23event3)'/%3E%3Ctext x='200' y='130' text-anchor='middle' font-family='serif' font-size='22' fill='white'%3ETrunk Show%3C/text%3E%3C/svg%3E" alt="Designer Trunk Show">
+                        <div class="event-date-badge">MAY 8, 2025</div>
+                    </div>
+                    <div class="event-item-content">
+                        <h3>Designer Trunk Show</h3>
+                        <p>Meet our head designer and explore bespoke tailoring options. Witness the craftsmanship behind each piece and discover personalized fashion solutions.</p>
+                        <div class="event-details">
+                            <span class="event-location">Luxe Showroom, Abuja</span>
+                            <button class="event-btn" onclick="bookEvent('Trunk Show')">Book Consultation</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-item-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 250'%3E%3Cdefs%3E%3ClinearGradient id='event4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%232e8b57'/%3E%3Cstop offset='100%25' style='stop-color:%231f5f3f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='250' fill='url(%23event4)'/%3E%3Ctext x='200' y='130' text-anchor='middle' font-family='serif' font-size='20' fill='white'%3ESustainable Fashion%3C/text%3E%3C/svg%3E" alt="Sustainable Fashion Workshop">
+                        <div class="event-date-badge">JUN 12, 2025</div>
+                    </div>
+                    <div class="event-item-content">
+                        <h3>Sustainable Fashion Workshop</h3>
+                        <p>Learn about our commitment to sustainable luxury fashion. Discover eco-friendly materials, ethical production processes, and the future of responsible luxury.</p>
+                        <div class="event-details">
+                            <span class="event-location">Luxe Academy, Lagos</span>
+                            <button class="event-btn" onclick="bookEvent('Workshop')">Join Workshop</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Events Timeline -->
+            <div class="upcoming-events">
+                <h2>Upcoming Calendar</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">March 15, 2025</div>
+                        <div class="timeline-title">Spring Fashion Gala</div>
+                        <div class="timeline-desc">Runway presentation of our Spring 2025 Collection</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">May 8, 2025</div>
+                        <div class="timeline-title">Designer Trunk Show</div>
+                        <div class="timeline-desc">Meet the designer and explore bespoke options</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">June 12, 2025</div>
+                        <div class="timeline-title">Sustainable Fashion Workshop</div>
+                        <div class="timeline-desc">Educational session on sustainable luxury fashion</div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // JavaScript functionality for the events page
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Event booking functionality
+        function bookEvent(eventName) {
+            // Simulate booking process
+            const confirmation = confirm(`Would you like to book/reserve for ${eventName}?`);
+            if (confirmation) {
+                alert(`Thank you! Your request for ${eventName} has been submitted. Our team will contact you shortly to confirm your reservation.`);
+                
+                // You could add actual booking logic here
+                // For now, we'll just log the event
+                console.log(`Booking request for: ${eventName}`);
+                
+                // Could integrate with a booking system or redirect to inquiries page
+                // window.location.href = '/inquiries.html?event=' + encodeURIComponent(eventName);
+            }
+        }
+
+        // Add hover effects to event items
+        document.querySelectorAll('.event-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all event items for animation
+        document.querySelectorAll('.event-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Dynamic date updates (for demo purposes)
+        function updateEventDates() {
+            const eventDates = document.querySelectorAll('.event-date-badge');
+            const timelineItems = document.querySelectorAll('.timeline-date');
+            
+            // This would normally connect to a real calendar/CMS system
+            console.log('Event dates loaded and displayed');
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateEventDates();
+            
+            // Add fade-in effect to timeline items
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-20px)';
+                setTimeout(() => {
+                    item.style.transition = 'all 0.6s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                }, index * 200);
+            });
+        });
+
+        // Add some interactivity to the marquee
+        document.addEventListener('DOMContentLoaded', function() {
+            const marqueeCards = document.querySelectorAll('#marquee .event-card');
+            marqueeCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const eventTitle = this.querySelector('h3').textContent;
+                    alert(`Learn more about: ${eventTitle}`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

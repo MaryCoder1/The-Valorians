@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections - Luxe Fashion House</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #d4af37;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        /* Cart Badge */
+        .cart-badge {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #d4af37;
+            color: #000;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Marquee */
+        #marquee {
+            background: linear-gradient(45deg, #d4af37, #f4d03f);
+            color: #000;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 1rem 0;
+            margin-top: 80px;
+        }
+
+        .marquee-text {
+            display: inline-block;
+            animation: scroll 20s linear infinite;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .discount-highlight {
+            color: #8b0000;
+            font-weight: bolder;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 200;
+            margin-bottom: 4rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #d4af37;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #d4af37;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .feature-icon {
+            margin-bottom: 1.5rem;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .feature-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover .feature-icon img {
+            transform: scale(1.1);
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #d4af37;
+        }
+
+        .feature-card h4 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #d4af37;
+        }
+
+        .feature-card p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Add to Cart Button Styles */
+        .add-to-cart-btn {
+            background: linear-gradient(45deg, #d4af37, #f4d03f);
+            color: #000;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+            pointer-events: all;
+        }
+
+        .add-to-cart-btn:hover {
+            background: linear-gradient(45deg, #f4d03f, #d4af37);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212,175,55,0.4);
+        }
+
+        .add-to-cart-btn:active {
+            transform: translateY(0);
+        }
+
+        .add-to-cart-btn.added {
+            background: linear-gradient(45deg, #28a745, #34d058);
+            color: white;
+        }
+
+        .add-to-cart-btn.added:hover {
+            background: linear-gradient(45deg, #34d058, #28a745);
+        }
+
+        /* Cart Modal Styles */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .cart-modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #1a1a1a;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 1rem;
+        }
+
+        .cart-header h3 {
+            color: #d4af37;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-cart:hover {
+            color: #d4af37;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 1rem;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-price {
+            color: #d4af37;
+        }
+
+        .cart-total {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .cart-total h4 {
+            font-size: 1.5rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+        }
+
+        .checkout-btn {
+            background: linear-gradient(45deg, #d4af37, #f4d03f);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .checkout-btn:hover {
+            background: linear-gradient(45deg, #f4d03f, #d4af37);
+            transform: translateY(-2px);
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: #ccc;
+            font-style: italic;
+            padding: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .features h2 {
+                font-size: 2rem;
+            }
+
+            .cart-modal-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">Luxe</div>
+            <nav>
+                <ul>
+                    
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/features.html">Collections</a></li>
+                    <li><a href="/board.html">Board</a></li>
+                    <li><a href="/inquiries.html">Inquiries</a></li>
+                    <li><a href="event.html">Event</a></li>
+                    <li class="cart-badge" onclick="toggleCart()">
+                        🛒 Cart
+                        <span class="cart-count" id="cartCount">0</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="marquee">
+        <div class="marquee-text">
+             LUXURY SALE EVENT - <span class="discount-highlight">50% OFF</span> ALL PREMIUM COLLECTIONS - LIMITED TIME ONLY - SHOP NOW AND SAVE BIG LUXURY SALE EVENT - <span class="discount-highlight">50% OFF</span> ALL PREMIUM COLLECTIONS - LIMITED TIME ONLY - SHOP NOW AND SAVE BIG 
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Men Suits</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/images/Men'S Beige Double-Breasted Suit with Peaked Lapels.jpeg" alt="Beige Suit"></div>
+                    <h3>Beige Colored Suit</h3>
+                    <h4>₦200,000</h4>
+                    <p>A double-breasted suit with peaked lapel.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Beige Colored Suit', 200000, '/images/beige-suit.jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/images/white suit (1).jpeg" alt="White Suit"></div>
+                    <h3>Classic White Double-Breasted Suit</h3>
+                    <h4>₦150,000</h4>
+                    <p>Sharp and sophisticated white double-breasted suit with peak lapels and matching trousers.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Classic White Double-Breasted Suit', 150000, '/images/white-suit.jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/images/men_suit.jpeg" alt="Green Suit"></div>
+                    <h3>Sage Green Suit</h3>
+                    <h4>₦100,000</h4>
+                    <p>Sophisticated sage green suit featuring a modern slim-fit cut.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Sage Green Suit', 100000, '/images/men_suit.jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/images/men_suite.jpeg" alt="Teal Suit"></div>
+                    <h3>Luxe Teal Green Suit with Gold Accents</h3>
+                    <h4>₦125,000</h4>
+                    <p>Premium teal green suit featuring a contemporary slim-fit silhouette.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Luxe Teal Green Suit with Gold Accents', 125000, '/images/men_suite.jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/images/men_suit (2).jpeg" alt="Pink Suit"></div>
+                    <h3>Blush Pink Three-Piece Suit</h3>
+                    <h4>₦90,000</h4>
+                    <p>Elegant blush pink three-piece suit featuring a modern slim-fit cut.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Blush Pink Three-Piece Suit', 90000, '/images/men_suit (2).jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/images/Luxe_suit.jpg" alt="Black Suit"></div>
+                    <h3>Black Three-Piece Suit with Overcoat</h3>
+                    <h4>₦110,000</h4>
+                    <p>Sophisticated all-black ensemble featuring a classic three-piece suit.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Black Three-Piece Suit with Overcoat', 110000, '/images/Luxe_suit.jpg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/images/Luxe clothings.jpg" alt="White Double Suit"></div>
+                    <h3>White Double-Breasted Suit</h3>
+                    <h4>₦80,000</h4>
+                    <p>Contemporary white double-breasted suit with a relaxed, modern fit.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('White Double-Breasted Suit', 80000, '/images/Luxe clothings.jpg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/images/orange_suit.jpeg" alt="Orange Suit"></div>
+                    <h3>Bold Orange Three-Piece Suit</h3>
+                    <h4>₦95,000</h4>
+                    <p>Eye-catching orange three-piece suit featuring a vibrant, confident color.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Bold Orange Three-Piece Suit', 95000, '/images/orange_suit.jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/images/download.jpeg" alt="Grey Tuxedo"></div>
+                    <h3>Grey Three-Piece Tuxedo with Black Lapels</h3>
+                    <h4>₦130,000</h4>
+                    <p>Sophisticated grey three-piece tuxedo featuring classic black satin shawl lapels.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Grey Three-Piece Tuxedo with Black Lapels', 130000, '/images/download.jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/images/Men's Dark Green Double breasted Suit, Suit for Wedding  Engagement, Prom, Groom wear and Groomsmen, Grooms, Prom Everyday Best Gift_.jpeg" alt="Olive Suit"></div>
+                    <h3>Olive Green Double-Breasted Suit</h3>
+                    <h4>₦85,000</h4>
+                    <p>Distinguished olive green double-breasted suit with peak lapels.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Olive Green Double-Breasted Suit', 85000, '/images/Men\'s Dark Green Double breasted Suit, Suit for Wedding  Engagement, Prom, Groom wear and Groomsmen, Grooms, Prom Everyday Best Gift_.jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/images/light orange three-piece suit  for Men.jpeg" alt="Champagne Suit"></div>
+                    <h3>Champagne Three-Piece Suit with Double-Breasted Vest</h3>
+                    <h4>₦110,000</h4>
+                    <p>Luxurious champagne-colored three-piece suit featuring a unique double-breasted vest.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Champagne Three-Piece Suit with Double-Breasted Vest', 110000, '/images/light orange three-piece suit  for Men.jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/images/_Men's suit set_  _ costume pour homme.jpeg" alt="Forest Green Suit"></div>
+                    <h3>Forest Green Three-Piece Suit with Watch Chain</h3>
+                    <h4>₦120,000</h4>
+                    <p>Classic forest green three-piece suit in a rich, deep tone that exudes timeless sophistication.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Forest Green Three-Piece Suit with Watch Chain', 120000, '/images/_Men\'s suit set_  _ costume pour homme.jpeg')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Gowns</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/women/Women_outfit.jpeg" alt="Dinner Gown"></div>
+                    <h3>Winner Court Dinner Gown</h3>
+                    <h4>₦150,000</h4>
+                    <p>Exclusive, handcrafted pieces designed for the most discerning clientele.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Winner Court Dinner Gown', 150000, '/women/Women_outfit.jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/women/Women Elegant Collar Single-Breasted Sleeveless Fitted Short Dress.jpeg" alt="Short Dress"></div>
+                    <h3>Sleeveless Fitted Short Dress</h3>
+                    <h4>₦65,000</h4>
+                    <p>White A-line sleeveless dress.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Sleeveless Fitted Short Dress', 65000, '/women/Women Elegant Collar Single-Breasted Sleeveless Fitted Short Dress.jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/women/women_outfit (2).jpeg" alt="Winter Dress"></div>
+                    <h3>Winter Fashionable Dress</h3>
+                    <h4>₦270,000</h4>
+                    <p>Soft feel gown with frocks.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Winter Fashionable Dress', 270000, '/women/women_outfit (2).jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/women/women_outfit(3).jpeg" alt="Bodycon Dress"></div>
+                    <h3>Standing Collar Bodycon Dress</h3>
+                    <h4>₦45,000</h4>
+                    <p>Standing collar with Drape Cloak sleeve.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Standing Collar Bodycon Dress', 45000, '/women/women_outfit(3).jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/women/women_outfit(4).jpeg" alt="Cloak Dress"></div>
+                    <h3>Cloak Sleeve Dress</h3>
+                    <h4>₦50,000</h4>
+                    <p>A Bodycon Dress with cloak sleeve.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Cloak Sleeve Dress', 50000, '/women/women_outfit(4).jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/women/women_outfit(5).jpeg" alt="Polo Gown"></div>
+                    <h3>Polo Gown</h3>
+                    <h4>₦35,000</h4>
+                    <p>Black gown adorned with decorative buttons.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Polo Gown', 35000, '/women/women_outfit(5).jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/women/women_outfit(6).jpeg" alt="White Collar Dress"></div>
+                    <h3>White Single Collar Dress</h3>
+                    <h4>₦52,000</h4>
+                    <p>Short Sleeve White Elegant Single Collar Dress.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('White Single Collar Dress', 52000, '/women/women_outfit(6).jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/women/Women'S Black Ruffle Mini Dress with Stand Collar.jpeg" alt="Ruffle Mini Dress"></div>
+                    <h3>Black Ruffle Mini Dress</h3>
+                    <h4>₦40,000</h4>
+                    <p>A Black Ruffle Mini Dress with Stand Collar.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Black Ruffle Mini Dress', 40000, '/women/Women\'S Black Ruffle Mini Dress with Stand Collar.jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/women/Women's Short Sleeve Elegant Ribbon Splice Fitted Stand Collar Dress.jpeg" alt="Black Elegant Dress"></div>
+                    <h3>Black Elegant Dress</h3>
+                    <h4>₦72,000</h4>
+                    <p>Women's Winter Color Block Shirt Collar Long Sleeve Elegant Dress.</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Black Elegant Dress', 72000, '/women/Women\'s Short Sleeve Elegant Ribbon Splice Fitted Stand Collar Dress.jpeg')">Add to Cart</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="/women/Women's Winter Color Block Shirt Collar Long Sleeve Faux Pocket Minimalist Short Elegant Dress.jpeg" alt="Block Shirt Dress"></div>
+                    <h3>Block Shirt Collar Long Sleeve</h3>
+                    <h4>₦56,000</h4>
+                    <p>A Minimalist short Elegant Dress (Burgundy color).</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Block Shirt Collar Long Sleeve', 56000, '/women/Women\'s Winter Color Block Shirt Collar Long Sleeve Faux Pocket Minimalist Short Elegant Dress.jpeg')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-modal-content">
+            <div class="cart-header">
+                <h3>Your Cart</h3>
+                <button class="close-cart" onclick="toggleCart()">&times;</button>
+            </div>
+            <div id="cartItems"></div>
+            <div class="cart-total">
+                <h4>Total: ₦<span id="cartTotal">0</span></h4>
+                <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let cartCount = 0;
+        let cartTotal = 0;
+
+        function addToCart(name, price, image) {
+            console.log('Adding to cart:', name, price, image); // Debug log
+            
+            // Check if item already exists in cart
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    image: image,
+                    quantity: 1
+                });
+            }
+            
+            updateCartUI();
+            showAddedFeedback(event.target);
+        }
+
+        function showAddedFeedback(button) {
+            if (!button) return;
+            
+            const originalText = button.textContent;
+            button.textContent = 'Added!';
+            button.classList.add('added');
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.classList.remove('added');
+            }, 1500);
+        }
+
+        function updateCartUI() {
+            cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            cartTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            
+            document.getElementById('cartCount').textContent = cartCount;
+            document.getElementById('cartTotal').textContent = cartTotal.toLocaleString();
+            
+            updateCartItems();
+        }
+
+        function updateCartItems() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+                return;
+            }
+            
+            cartItemsContainer.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">₦${item.price.toLocaleString()} x ${item.quantity}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            alert(`Thank you for your purchase! Total: ₦${cartTotal.toLocaleString()}\n\nYour order will be processed shortly. We'll contact you for delivery details.`);
+            
+            // Clear cart after checkout
+            cart = [];
+            updateCartUI();
+            toggleCart();
+        }
+
+        // Close cart when clicking outside
+        document.getElementById('cartModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                toggleCart();
+            }
+        });
+
+        // Initialize cart display
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartUI();
+        });
+    </script>
+</body>
+</html>
